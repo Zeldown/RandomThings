@@ -1,0 +1,12 @@
+name: RandomThings
+description: RandomThings for EmrahOKLM
+author: Zeldown
+version: 1.0
+main: be.zeldown.randomthings.RandomThings
+api-version: 1.16
+
+commands:
+ randomthings:
+   description: randomthings command
+   usage: rt
+   aliases: [rdmt, randomt, rt, rthings, rdmthings]
