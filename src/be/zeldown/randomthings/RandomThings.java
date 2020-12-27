@@ -1,5 +1,6 @@
 package be.zeldown.randomthings;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,6 +43,7 @@ import be.zeldown.randomthings.events.WitherEvent;
 import be.zeldown.randomthings.events.ZombiePartyEvent;
 import be.zeldown.randomthings.executors.RandomThingsExecutor;
 import be.zeldown.randomthings.utils.ARandomEvent;
+import be.zeldown.randomthings.utils.ClassCreator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -64,7 +66,16 @@ public class RandomThings extends JavaPlugin implements Listener {
 		
 		getCommand("randomthings").setExecutor(new RandomThingsExecutor());
 		
-		registerEvents();
+		saveDefaultConfig();
+		
+		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eLoad default event : " + (getConfig().getBoolean("default") ? "§aoui" : "§cnon"));
+		if(getConfig().getBoolean("default")) {
+			registerEvents();
+		}
+		
+		if(getConfig().getBoolean("read")) {
+			readFiles();
+		}
 		
 		new BukkitRunnable() {
 			
@@ -145,4 +156,23 @@ public class RandomThings extends JavaPlugin implements Listener {
  
 	}
 	
+
+	private void readFiles() {
+		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eReading files");
+		File dir = new File(getDataFolder(), "events/");
+		if(!dir.exists()) {
+			dir.mkdirs();
+			getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §cNo files found");
+		}
+		File[] files = dir.listFiles();
+		List<File> loaded = new ArrayList<File>();
+        for(File f : files){
+            if(f.getName().endsWith(".class")) {
+        		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eReading §b" + f.getName());
+        		
+            }
+        }
+
+		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eLoading " + loaded.size() + " files");
+	}
 }
