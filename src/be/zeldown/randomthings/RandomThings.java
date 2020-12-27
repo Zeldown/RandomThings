@@ -1,9 +1,12 @@
 package be.zeldown.randomthings;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -43,6 +46,7 @@ import be.zeldown.randomthings.events.WitherEvent;
 import be.zeldown.randomthings.events.ZombiePartyEvent;
 import be.zeldown.randomthings.executors.RandomThingsExecutor;
 import be.zeldown.randomthings.utils.ARandomEvent;
+import be.zeldown.randomthings.utils.EventLoaded;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,6 +57,8 @@ public class RandomThings extends JavaPlugin implements Listener {
 	@Getter @Setter private boolean enable = false;
 	
 	@Getter List<ARandomEvent> events = new ArrayList<ARandomEvent>();
+	
+	@Getter List<EventLoaded> loaded = new ArrayList<EventLoaded>();
 	
 	private Random random = new Random();
 	
@@ -67,7 +73,7 @@ public class RandomThings extends JavaPlugin implements Listener {
 		
 		saveDefaultConfig();
 		
-		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eLoad default event : " + (getConfig().getBoolean("default") ? "§aoui" : "§cnon"));
+		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eLoad default event : " + (getConfig().getBoolean("default") ? "§ayes" : "§cno"));
 		if(getConfig().getBoolean("default")) {
 			registerEvents();
 		}
@@ -76,6 +82,9 @@ public class RandomThings extends JavaPlugin implements Listener {
 			readFiles();
 		}
 		
+		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eThere is §b" + events.size() + " §eevents loaded");
+		
+		
 		new BukkitRunnable() {
 			
 			@Override
@@ -83,13 +92,17 @@ public class RandomThings extends JavaPlugin implements Listener {
 				if(enable) {
 					for(Player p : Bukkit.getOnlinePlayers()) {
 						ARandomEvent event = events.get(random.nextInt(events.size()));
+						
+						//event = events.get(events.size()-1);
+						
 						p.sendTitle("§7[§eRandomThings§7]", "§b> §a" + event.name());
 						event.perform(p);
 					}
 				}
 			}
 		}.runTaskTimer(this, 600, 600);
-	}
+        
+    }
 
 	@Override
 	public void onDisable() {}
@@ -164,11 +177,38 @@ public class RandomThings extends JavaPlugin implements Listener {
 			getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §cNo files found");
 		}
 		File[] files = dir.listFiles();
-		List<File> loaded = new ArrayList<File>();
         for(File f : files){
-            if(f.getName().endsWith(".class")) {
+            if(f.getName().endsWith(".event")) {
         		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eReading §b" + f.getName());
         		
+        		String name = null;
+        		
+        		Scanner myReader;
+				try {
+					myReader = new Scanner(f);
+					
+					int offset = 0;
+					
+					while (myReader.hasNextLine()) {
+						String data = myReader.nextLine();
+	          	        if(data.startsWith("name: ") && name == null) {
+	          	        	name = data.replaceAll("name : ", "");
+	          	        }
+	          	        if(data.startsWith("perform:")) {
+	          	        	
+	          	        }
+					}
+					myReader.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+        		
+        		EventLoaded loaded = new EventLoaded(name, "p.sendMessage(\"test\");");
+        		
+        		this.events.add((ARandomEvent) loaded.getProxy());
+        		this.loaded.add(loaded);
+
+        		getServer().getConsoleSender().sendMessage("§7[§6RandomThings7] §eLoaded §b" + f.getName() + " §7(" + ((ARandomEvent) loaded.getProxy()).name() + ")");
             }
         }
 

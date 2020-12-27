@@ -9,7 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import be.zeldown.randomthings.RandomThings;
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class ParticlesEvent extends ARandomEvent {
+public class ParticlesEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

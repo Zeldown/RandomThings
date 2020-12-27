@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class HealthEvent extends ARandomEvent {
+public class HealthEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

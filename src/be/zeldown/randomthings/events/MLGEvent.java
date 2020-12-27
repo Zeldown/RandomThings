@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class MLGEvent extends ARandomEvent {
+public class MLGEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

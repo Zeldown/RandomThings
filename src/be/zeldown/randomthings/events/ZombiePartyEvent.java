@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class ZombiePartyEvent extends ARandomEvent {
+public class ZombiePartyEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

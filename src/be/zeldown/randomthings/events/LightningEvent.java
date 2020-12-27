@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import be.zeldown.randomthings.RandomThings;
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class LightningEvent extends ARandomEvent {
+public class LightningEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class HomeEvent extends ARandomEvent {
+public class HomeEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

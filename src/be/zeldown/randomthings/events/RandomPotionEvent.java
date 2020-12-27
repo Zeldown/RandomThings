@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class RandomPotionEvent extends ARandomEvent {
+public class RandomPotionEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class BordelEvent extends ARandomEvent {
+public class BordelEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {

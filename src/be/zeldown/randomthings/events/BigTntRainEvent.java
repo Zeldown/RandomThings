@@ -8,7 +8,7 @@ import org.bukkit.entity.TNTPrimed;
 
 import be.zeldown.randomthings.utils.ARandomEvent;
 
-public class BigTntRainEvent extends ARandomEvent {
+public class BigTntRainEvent implements ARandomEvent {
 
 	@Override
 	public void perform(Player p) {
