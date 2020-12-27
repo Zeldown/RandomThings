@@ -43,7 +43,6 @@ import be.zeldown.randomthings.events.WitherEvent;
 import be.zeldown.randomthings.events.ZombiePartyEvent;
 import be.zeldown.randomthings.executors.RandomThingsExecutor;
 import be.zeldown.randomthings.utils.ARandomEvent;
-import be.zeldown.randomthings.utils.ClassCreator;
 import lombok.Getter;
 import lombok.Setter;
 
