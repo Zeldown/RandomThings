@@ -1,5 +1,0 @@
-# Read files in RandomThings/events
-read: false
-
-# Enable defaults events
-default: true

@@ -1,12 +1,12 @@
-name: RandomThings
-description: RandomThings for EmrahOKLM
+name: Forcefield
+description: Forcefield for EmrahOKLM
 author: Zeldown
 version: 1.0
-main: be.zeldown.randomthings.RandomThings
+main: be.zeldown.forcefield.Forcefield
 api-version: 1.16
 
 commands:
- randomthings:
-   description: randomthings command
-   usage: rt
-   aliases: [rdmt, randomt, rt, rthings, rdmthings]
+ forcefield:
+   description: forcefield command
+   usage: ff
+   aliases: [forcef, ffield]
