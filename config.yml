@@ -1,0 +1,5 @@
+# Distance in which the entities will be pushed
+distance: 5.0
+
+# Ignore dropped items in forcefield
+ignoreItems: false

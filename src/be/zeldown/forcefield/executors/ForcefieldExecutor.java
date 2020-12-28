@@ -1,10 +1,10 @@
-package be.zeldown.randomthings.executors;
+package be.zeldown.forcefield.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import be.zeldown.randomthings.Forcefield;
+import be.zeldown.forcefield.Forcefield;
 
 public class ForcefieldExecutor implements CommandExecutor {
 
